@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "../../../../Javier Monzón/UVG/2024/Tesis/ControladorPololu"
+		},
+		{
+			"name": "ESP32",
+			"path": ".."
+		}
+	],
+	"settings": {}
+}
