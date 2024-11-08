@@ -1,0 +1,67 @@
+# Robotat Pololu3Pi+ with ESP32 Control System
+
+This project is part of a graduation thesis focusing on control and tracking of a robotic agent, using an ESP32 microcontroller, 
+inside the Robotat ecosystem of Universidad del Valle de Guatemala. The system connects to a WiFi network, communicates with a 
+motion capture (MOCAP) server (Robotat), and utilizes Kalman filtering for position estimation. It also features UDP and TCP 
+communication for real-time data exchange and control.
+
+## Table of Contents
+- [Features](#features)
+- [Project Structure](#project-structure)
+- [Setup and Configuration](#setup-and-configuration)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Project Components](#project-components)
+- [Contributing](#contributing)
+
+## Features
+
+- **WiFi Connection**: Connects to a specified WiFi network with static IP configuration.
+- **TCP and UDP Communication**: Facilitates data exchange with external servers for control and monitoring.
+- **Kalman Filter**: Implements a Kalman filter for precise position estimation based on encoder and MOCAP data.
+- **PID Control**: Controls the robot’s speed and direction toward specified coordinates.
+- **Robotat Server Integration**: Connects to a Robotat server to retrieve MOCAP data.
+- **Real-Time Monitoring**: Sends JSON-formatted position data via UDP for real-time monitoring.
+
+## Project Structure
+
+The project files include:
+
+| File             | Description |
+| ---------------- | ----------- |
+| `main.c`         | Entry point with initialization and task scheduling for various functionalities. |
+| `robotat_util.c` | Utility functions for coordinate conversions and PID control. |
+| `eztcp.c`        | Implements TCP communication for connection and data exchange. |
+| `ezudp.c`        | Implements UDP communication for data transmission and reception. |
+| `ezwifi.c`       | Manages WiFi connection, including reconnection and static IP configuration. |
+| `kalman.c`       | Provides Kalman filter functionality for robot pose estimation. |
+| `robotat.c`      | Manages connection and data retrieval from the Robotat server. |
+| Header files     | Contains function declarations and constants used across modules. |
+
+## Setup and Configuration
+
+1. **WiFi Configuration**:
+   - Ensure the WiFi credentials in `config.h` match your network:
+     ```c
+     static const char ssid[32] = "Your_SSID";
+     static const char password[64] = "Your_Password";
+     ```
+
+2. **Server IP and Ports**:
+   - Set the ESP32 static IP, UDP server IP and port details in `config.h`:
+     ```c
+     static const char *static_ip = "192.168.50.100";
+     static const char *udp_server_ip = "192.168.50.116";
+     static const int udp_server_port = 8888;
+     static const int tcp_port = 5005;
+     ```
+
+3. **PlatformIO Environment**:
+   - This project is developed in PlatformIO within Visual Studio Code. Ensure you have PlatformIO and the ESP32 development environment installed.
+
+## Installation
+
+1. **Clone the Repository**:
+   Clone this repository to your local development environment:
+   ```bash
+   git clone https://github.com/yourusername/robotat-esp32-control-system.git
